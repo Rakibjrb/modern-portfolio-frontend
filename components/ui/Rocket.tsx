@@ -11,7 +11,7 @@ const Rocket = () => {
             transition={{ duration: 2, delay: 1 }}
             className="w-full flex justify-center items-start h-[300px]"
         >
-            <Image src="/rocket.gif" alt="Rocket" width={200} height={300} />
+            <Image src="/rocket.gif" alt="Rocket" width={200} height={300} unoptimized={true} />
         </motion.div>
     )
 }

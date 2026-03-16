@@ -66,21 +66,20 @@ export default function Hero() {
                 </motion.div>
             </div>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-                <div className="relative w-[250px] h-[250px] bg-black rounded-full shadow-[0_0_80px_20px_rgba(59,130,246,0.4)] flex items-center justify-center">
+                <div className="relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] bg-black rounded-full shadow-[0_0_80px_20px_rgba(59,130,246,0.4)] flex items-center justify-center">
 
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        className="absolute w-[400px] h-[400px] rounded-full border-t-2 border-b-2 border-blue-500/30 blur-[2px]"
+                        className="absolute w-[260px] h-[260px] lg:w-[400px] lg:h-[400px] rounded-full border-t-2 border-b-2 border-blue-500/30 blur-[2px]"
                     />
 
                     <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className="absolute w-[320px] h-[320px] rounded-full border-l-2 border-r-2 border-cyan-400/40 blur-[1px]"
+                        className="absolute w-[200px] h-[200px] lg:w-[320px] lg:h-[320px] rounded-full border-l-2 border-r-2 border-cyan-400/40 blur-[1px]"
                     />
 
                     {[...Array(3)].map((_, i) => (
