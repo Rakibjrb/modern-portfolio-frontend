@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-const BackButton = () => {
+const BackButton = ({ text = "Exit Portal" }: { text?: string }) => {
     const router = useRouter();
 
     return (
@@ -10,7 +10,7 @@ const BackButton = () => {
             <span className="text-xl group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
                 🚀
             </span>
-            Go Back
+            {text}
         </motion.button>
     )
 };

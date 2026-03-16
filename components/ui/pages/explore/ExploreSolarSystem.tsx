@@ -15,18 +15,10 @@ const planets = [
 
 
 export default function ExploreSolarSystem() {
-    const [stars, setStars] = useState<{ top: string, left: string, size: string, opacity: number }[]>([]);
     const [asteroids, setAsteroids] = useState<{ id: number, startTop: string, startLeft: string, size: string, duration: number, xTarget: number, yTarget: number, emoji: string }[]>([]);
 
     useEffect(() => {
-        const generatedStars = [...Array(100)].map(() => ({
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            size: `${Math.random() * 2}px`,
-            opacity: Math.random(),
-        }));
-
-        const generatedAsteroids = [...Array(12)].map((_, i) => {
+        const generatedAsteroids = [...Array(2)].map((_, i) => {
             const startTop = `${Math.random() * 40 + 80}%`;
             const startLeft = `${Math.random() * 60 - 20}%`;
 
@@ -45,36 +37,17 @@ export default function ExploreSolarSystem() {
             };
         });
 
-        setStars(generatedStars);
         setAsteroids(generatedAsteroids);
     }, []);
 
     return (
-        <div className="relative min-h-screen w-full bg-[#050505] p-6">
+        <div className="relative min-h-screen w-full bg-transparent p-6">
             <div className="fixed top-6 left-6 z-[100] pointer-events-auto">
-                <BackButton />
+                <BackButton text="Escape to Singularity" />
             </div>
 
             <main className="w-full h-[calc(100vh-100px)] flex items-center justify-center overflow-hidden font-sans">
-
-                {/* Background Stars */}
-                <div className="absolute inset-0 z-0">
-                    {stars.map((star, i) => (
-                        <div
-                            key={i}
-                            className="absolute bg-white rounded-full animate-pulse"
-                            style={{
-                                top: star.top,
-                                left: star.left,
-                                width: star.size,
-                                height: star.size,
-                                opacity: star.opacity,
-                            }}
-                        />
-                    ))}
-                </div>
-
-                {/* flying Asteroids (কোনাকুনি મુভমেন্ট) */}
+                {/* flying Asteroids */}
                 <div className="absolute inset-0 z-5 pointer-events-none">
                     {asteroids.map((ast) => (
                         <motion.div
