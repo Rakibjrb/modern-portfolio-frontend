@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 export default function Hero() {
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-6 bg-[#050505] overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center px-6 bg-transparent overflow-hidden">
+            {/* Content Container */}
             <div className="max-w-5xl text-center z-10">
-                {/* Greeting */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -39,7 +39,6 @@ export default function Hero() {
                     </span>
                 </motion.h1>
 
-                {/* Glassy Universe Button */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -58,50 +57,10 @@ export default function Hero() {
                             </motion.span>
                         </span>
                     </Button>
-
-                    {/* Hint text */}
                     <div className="mt-6 text-slate-300 text-[10px] tracking-widest animate-pulse uppercase">
                         Click to launch
                     </div>
                 </motion.div>
-            </div>
-
-
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-                <div className="relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] bg-black rounded-full shadow-[0_0_80px_20px_rgba(59,130,246,0.4)] flex items-center justify-center">
-
-                    <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        className="absolute w-[260px] h-[260px] lg:w-[400px] lg:h-[400px] rounded-full border-t-2 border-b-2 border-blue-500/30 blur-[2px]"
-                    />
-
-                    <motion.div
-                        animate={{ rotate: -360 }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className="absolute w-[200px] h-[200px] lg:w-[320px] lg:h-[320px] rounded-full border-l-2 border-r-2 border-cyan-400/40 blur-[1px]"
-                    />
-
-                    {[...Array(3)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 8 + i * 2, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-0"
-                        >
-                            <div
-                                className="w-1 h-1 bg-white rounded-full absolute"
-                                style={{
-                                    top: '0%',
-                                    left: '50%',
-                                    boxShadow: '0 0 10px 2px white'
-                                }}
-                            />
-                        </motion.div>
-                    ))}
-
-                    <div className="absolute w-full h-full bg-blue-600/10 rounded-full blur-[100px]" />
-                </div>
             </div>
         </section>
     );
