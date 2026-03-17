@@ -42,7 +42,7 @@ export default function layout({
     const pathname = usePathname();
 
     useEffect(() => {
-        const generateStars = [...Array(50)].map(() => ({
+        const generateStars = [...Array(100)].map(() => ({
             radius: Math.random() * 800 + 100,
             angle: Math.random() * 360,
             size: `${Math.random() * 4 + 1}px`,
@@ -71,7 +71,7 @@ export default function layout({
                                 opacity: star.opacity,
                             }}
                             initial={{ rotate: star.angle }}
-                            animate={{ rotate: star.angle + 360 }} // ৩৬০ ডিগ্রি অনবরত ঘুরবে
+                            animate={{ rotate: star.angle + 360 }}
                             transition={{
                                 duration: star.duration,
                                 repeat: Infinity,
