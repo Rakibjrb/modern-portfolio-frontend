@@ -13,7 +13,7 @@ const Rocket = ({ destination = "The Mission" }: { destination?: string }) => {
         >
             <Image className="w-auto h-auto" src="/rocket.gif" alt="Rocket" width={200} height={280} unoptimized={true} loading="eager" />
 
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-white text-xl font-bold">Travelling to {destination}...</div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-white text-xl font-bold text-center">Travelling to {destination}...</div>
         </motion.div>
     )
 }
