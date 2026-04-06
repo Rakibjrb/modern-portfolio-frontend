@@ -82,15 +82,15 @@ const projects = [
 
 export default function Projects() {
     return (
-        <main className="relative h-screen w-full bg-[#f5000057] text-white p-6 overflow-x-hidden overflow-y-auto">
+        <main className="relative h-screen w-full text-white p-6 overflow-x-hidden overflow-y-auto">
+            <div className="mb-16">
+                <BackButton text="Back to Orbit" />
+            </div>
 
             {/* Background Effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative z-10">
-                <div className="mb-16">
-                    <BackButton text="Back to Orbit" />
-                </div>
 
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -122,7 +122,7 @@ export default function Projects() {
                                     {project.title}
                                 </h3>
 
-                                <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                                <p className="text-slate-200 text-sm leading-relaxed mb-6 font-light">
                                     {project.desc}
                                 </p>
 

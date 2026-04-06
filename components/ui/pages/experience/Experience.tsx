@@ -1,27 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, CheckCircle2, Rocket, GraduationCap, School, MapPin } from "lucide-react";
+import { CheckCircle2, Rocket, GraduationCap, School, Workflow } from "lucide-react";
 import BackButton from "@/components/shared/BackButton";
 
 const experiences = [
     {
         type: "work",
-        company: "NeexG (Agency)",
-        role: "Full-stack Developer & Founder",
+        company: "NeexG Agency",
+        role: "Senior Executive, Developer Team",
         period: "March 2026 - Present",
         desc: "Leading web development and automation projects. Specialized in building bulk mailing systems and custom business workflows.",
-        points: ["Next.js & Node.js integration", "n8n workflow automation", "Client management"],
+        points: ["Next.js & Node.js integration", "Client management"],
         icon: <Rocket className="text-blue-400" />
     },
     {
         type: "work",
-        company: "Freelance / Open Source",
-        role: "Automation Specialist",
+        company: "NeexG Agency",
+        role: "n8n Automation Expert",
         period: "2025 - 2026",
-        desc: "Developed custom automation scripts and bots to streamline repetitive tasks using Python and various APIs.",
-        points: ["API integration", "Workflow optimization", "Scripting"],
-        icon: <Briefcase className="text-cyan-400" />
+        desc: "Designed and deployed complex autonomous workflows using n8n to connect various SaaS platforms and automate repetitive business processes.",
+        points: [
+            "Custom API & Webhook Integration",
+            "Multi-node Workflow Architecture",
+            "Data Transformation & Error Handling"
+        ],
+        icon: <Workflow className="text-cyan-400" />
     }
 ];
 
