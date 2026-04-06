@@ -30,6 +30,14 @@ const blackHoleVariants = (pathname: string) => {
                 ambientLight: "bg-blue-600/10",
             }
 
+        case "/experience":
+            return {
+                blackHoleBG: "bg-[#F9B266]",
+                eventHorizon1: "border-[#F9B266]/30",
+                eventHorizon2: "border-[#F9B266]/40",
+                ambientLight: "bg-[#F9B266]/10",
+            }
+
         default:
             return {
                 blackHoleBG: "bg-black",

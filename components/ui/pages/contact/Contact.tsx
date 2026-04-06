@@ -6,7 +6,7 @@ import BackButton from "@/components/shared/BackButton";
 
 export default function DeepSpaceContactPage() {
     return (
-        <main className="relative h-screen w-full bg-[#030303] text-white p-6 md:p-10 overflow-x-hidden overflow-y-auto font-sans">
+        <main className="relative h-screen w-full text-white p-6 md:p-10 overflow-x-hidden overflow-y-auto font-sans">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
                 {[...Array(5)].map((_, i) => (
                     <motion.div

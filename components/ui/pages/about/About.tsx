@@ -19,16 +19,16 @@ export default function About() {
     ];
 
     return (
-        <main className="relative h-screen w-full bg-[#1d7ce78a] text-white p-6 md:p-12 overflow-x-hidden font-sans">
+        <main className="relative h-screen w-full text-white p-6 md:p-12 overflow-x-hidden font-sans">
+            <div className="mb-12">
+                <BackButton />
+            </div>
 
             {/* Background Nebula */}
             <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[150px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative z-10">
-                <div className="mb-12">
-                    <BackButton />
-                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
@@ -39,7 +39,7 @@ export default function About() {
                         className="lg:col-span-4 lg:sticky lg:top-12"
                     >
                         <div className="relative group">
-                            <div className="absolute -inset-1 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-500" />
+                            <div className="absolute -inset-1 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-500" />
                             <div className="relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 rounded-[2.5rem] text-center">
                                 {/* Profile Placeholder / Image */}
                                 <div className="w-[280px] h-[380px] mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-600 to-cyan-400 p-[2px]">

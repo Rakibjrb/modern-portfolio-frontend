@@ -52,7 +52,7 @@ export default function SkillsUniversePage() {
     }, []);
 
     return (
-        <main className="relative min-h-screen w-full bg-[#fce30054] text-white overflow-hidden p-6 font-sans">
+        <main className="relative min-h-screen w-full text-white overflow-hidden p-6 font-sans">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[150px] pointer-events-none z-0" />
             <div className="fixed top-8 left-8 z-50 pointer-events-auto">
                 <BackButton text="Back to Orbit" />
@@ -101,12 +101,12 @@ export default function SkillsUniversePage() {
                 ))}
             </div>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 pointer-events-none">
+            {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 pointer-events-none">
                 <h1 className="text-6xl md:text-9xl font-extrabold tracking-tighter text-yellow-400">
                     MY<br />SKILLS
                 </h1>
                 <p className="text-slate-300 tracking-[0.5em] uppercase text-xs mt-4">The forces of sun</p>
-            </div>
+            </div> */}
         </main>
     );
 }
