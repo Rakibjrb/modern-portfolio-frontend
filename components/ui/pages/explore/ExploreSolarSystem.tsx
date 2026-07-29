@@ -87,7 +87,7 @@ export default function ExploreSolarSystem() {
                                     >
                                         <span className="text-5xl">{planet.icon}</span>
                                         {/* Label */}
-                                        <span className="text-center absolute -bottom-8 text-white text-[10px] font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 bg-black/50 px-2 py-0.5 rounded transition-opacity whitespace-nowrap">
+                                        <span className="text-center absolute -bottom-8 text-white text-[10px] font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100 bg-black/50 px-2 py-0.5 rounded transition-opacity whitespace-nowrap">
                                             {planet.name}
                                         </span>
                                     </motion.div>
@@ -136,7 +136,7 @@ export default function ExploreSolarSystem() {
                                             <span className="text-2xl">{planet.icon}</span>
 
                                             {/* Label */}
-                                            <span className="text-center absolute -bottom-8 text-white text-[10px] font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 bg-black/50 px-2 py-0.5 rounded transition-opacity whitespace-nowrap">
+                                            <span className="text-center absolute -bottom-8 text-white text-[10px] font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100 bg-black/50 px-2 py-0.5 rounded transition-opacity whitespace-nowrap">
                                                 {planet.name}
                                             </span>
                                         </motion.div>

@@ -6,9 +6,9 @@ import Image from "next/image";
 const Rocket = ({ destination = "The Mission" }: { destination?: string }) => {
     return (
         <motion.div
-            initial={{ opacity: 1, y: 400 }}
+            initial={{ opacity: 1, y: 900 }}
             animate={{ opacity: 1, y: -500 }}
-            transition={{ duration: 2, delay: 1 }}
+            transition={{ duration: 3, delay: 1 }}
             className="w-full h-[300px] flex justify-center items-start"
         >
             <Image className="w-auto h-auto" src="/rocket.gif" alt="Rocket" width={200} height={280} unoptimized={true} loading="eager" />

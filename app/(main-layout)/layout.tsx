@@ -58,7 +58,7 @@ export default function layout({
     const pathname = usePathname();
 
     useEffect(() => {
-        const generateStars = [...Array(100)].map(() => ({
+        const generateStars = [...Array(50)].map(() => ({
             radius: Math.random() * 800 + 100,
             angle: Math.random() * 360,
             size: `${Math.random() * 4 + 1}px`,
