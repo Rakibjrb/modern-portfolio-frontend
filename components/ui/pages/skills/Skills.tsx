@@ -55,7 +55,7 @@ export default function SkillsUniversePage() {
         <main className="relative min-h-screen w-full text-white overflow-hidden p-6 font-sans">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[150px] pointer-events-none z-0" />
             <div className="fixed top-8 left-8 z-50 pointer-events-auto">
-                <BackButton text="Back to Orbit" />
+                <BackButton text="Go Back" />
             </div>
 
             <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">

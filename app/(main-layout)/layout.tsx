@@ -24,10 +24,10 @@ const blackHoleVariants = (pathname: string) => {
 
         case "/about":
             return {
-                blackHoleBG: "bg-blue-500",
+                blackHoleBG: "bg-blue-900",
                 eventHorizon1: "border-blue-500/30",
                 eventHorizon2: "border-blue-400/40",
-                ambientLight: "bg-blue-600/10",
+                ambientLight: "bg-blue-800/10",
             }
 
         case "/experience":
@@ -103,7 +103,7 @@ export default function layout({
                 </div>
 
                 {/* Black Hole Center (The Anchor) */}
-                {pathname !== "/explore" && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
+                {pathname !== "/explore" && pathname !== "/contact" && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
                     <div className={`relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] ${blackHoleVariants(pathname).blackHoleBG} rounded-full shadow-[0_0_80px_20px_rgba(59,130,246,0.4)] flex items-center justify-center`}>
 
                         {/* Event Horizon Layers */}

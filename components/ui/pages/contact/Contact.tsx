@@ -6,15 +6,15 @@ import BackButton from "@/components/shared/BackButton";
 
 export default function DeepSpaceContactPage() {
     return (
-        <main className="relative h-screen w-full text-white p-6 md:p-10 overflow-x-hidden overflow-y-auto font-sans">
+        <main className="relative h-screen w-full text-white p-6 md:p-10 overflow-x-hidden overflow-x-hidden overflow-y-auto font-sans">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
-                {[...Array(5)].map((_, i) => (
+                {[...Array(7)].map((_, i) => (
                     <motion.div
                         key={i}
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{
                             opacity: [0, 0.6, 0],
-                            scale: [0.7, 1.8, 2.5]
+                            scale: [0.1, 0.4, 0.7, 1, 1.4, 1.7]
                         }}
                         transition={{
                             duration: 5,
@@ -37,7 +37,7 @@ export default function DeepSpaceContactPage() {
 
             <div className="max-w-7xl mx-auto relative z-10 h-full flex flex-col">
                 <div className="mb-10">
-                    <BackButton text="back to orbit" />
+                    <BackButton text="Go Back" />
                 </div>
 
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-20 items-center grow">
@@ -50,14 +50,13 @@ export default function DeepSpaceContactPage() {
                         className="space-y-6"
                     >
                         <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-white">
-                            Signal <br />
+                            Get in <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 drop-shadow-md">
-                                Intercept
+                                Touch
                             </span>
                         </h1>
                         <p className="text-slate-400 text-lg md:text-xl max-w-xl font-light leading-relaxed">
-                            Establishing a connection with me is a journey across the digital cosmos.
-                            Fill the terminal below to launch your transmission across the void.
+                            Have a project in mind, need web architecture advice, or want to automate your business workflow? Send a message to start the conversation.
                         </p>
 
                         {/* Direct Contact Info */}
@@ -106,14 +105,14 @@ export default function DeepSpaceContactPage() {
                         <div className="absolute inset-0 bg-blue-500/15 blur-[100px] rounded-full pointer-events-none" />
 
                         <form className="relative bg-white/5 backdrop-blur-3xl border border-white/10 p-10 md:p-12 rounded-[2rem] shadow-[0_0_60px_rgba(59,130,246,0.2)]">
-                            <h2 className="text-center text-xs uppercase tracking-[0.5em] text-slate-500 mb-12">Transmission Terminal [T-419]</h2>
+                            <h2 className="text-center text-xs uppercase tracking-[0.5em] text-slate-300 mb-12">Transmission Terminal [T-419]</h2>
 
                             <div className="space-y-8">
                                 <div>
                                     <input
                                         type="text"
                                         placeholder="Enter Identity (Name)..."
-                                        className="w-full bg-black/30 border border-white/10 rounded-full px-8 py-5 outline-none focus:border-blue-500/70 focus:bg-black/50 transition-all text-white text-lg font-light placeholder:text-slate-700"
+                                        className="w-full bg-black/30 border border-white/10 rounded-full px-8 py-5 outline-none focus:border-blue-500/70 focus:bg-black/50 transition-all text-white text-lg font-light placeholder:text-slate-400"
                                     />
                                 </div>
 
@@ -121,7 +120,7 @@ export default function DeepSpaceContactPage() {
                                     <input
                                         type="email"
                                         placeholder="Set Frequency (email@cosmos.com)..."
-                                        className="w-full bg-black/30 border border-white/10 rounded-full px-8 py-5 outline-none focus:border-cyan-400/70 focus:bg-black/50 transition-all text-white text-lg font-light placeholder:text-slate-700"
+                                        className="w-full bg-black/30 border border-white/10 rounded-full px-8 py-5 outline-none focus:border-cyan-400/70 focus:bg-black/50 transition-all text-white text-lg font-light placeholder:text-slate-400"
                                     />
                                 </div>
 
@@ -129,7 +128,7 @@ export default function DeepSpaceContactPage() {
                                     <textarea
                                         rows={5}
                                         placeholder="Type Transmission Message..."
-                                        className="w-full bg-black/30 border border-white/10 rounded-3xl px-8 py-6 outline-none focus:border-blue-500/70 focus:bg-black/50 transition-all text-white text-lg font-light placeholder:text-slate-700 resize-none"
+                                        className="w-full bg-black/30 border border-white/10 rounded-3xl px-8 py-6 outline-none focus:border-blue-500/70 focus:bg-black/50 transition-all text-white text-lg font-light placeholder:text-slate-400 resize-none"
                                     />
                                 </div>
 
@@ -147,7 +146,7 @@ export default function DeepSpaceContactPage() {
                                     }}
                                     className="w-full py-5 rounded-full font-extrabold tracking-[0.3em] uppercase text-xs flex items-center justify-center gap-3 text-white"
                                 >
-                                    Initiate Transmission <Send size={18} />
+                                    Transmit Signal <Send size={18} />
                                 </motion.button>
                             </div>
                         </form>

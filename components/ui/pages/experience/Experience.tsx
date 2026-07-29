@@ -52,12 +52,12 @@ const education = [
 export default function MissionLogPage() {
     return (
         <main className="relative h-screen w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-scroll">
-            <div className="mb-12"><BackButton /></div>
+            <div className="mb-12"><BackButton text="Go Back" /></div>
 
             {/* Background Decor */}
             <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] pointer-events-none" />
 
-            <div className="max-w-4xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -65,9 +65,9 @@ export default function MissionLogPage() {
                     className="mb-16"
                 >
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tighter italic">
-                        Mission <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 not-italic">Log</span>
+                        Experience <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 not-italic">Logs</span>
                     </h1>
-                    <p className="text-slate-500 mt-4 tracking-[0.3em] uppercase text-xs">Professional orbit and academic foundations</p>
+                    <p className="text-slate-400 mt-4 tracking-[0.3em] text-sm">Professional & academic Foundations</p>
                 </motion.div>
 
                 {/* --- Work Experience Section --- */}
@@ -117,10 +117,10 @@ function TimelineCard({ data }: { data: any }) {
             <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all group">
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                     <div>
-                        <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors tracking-tight">
+                        <h3 className="text-xl md:text-3xl font-bold group-hover:text-blue-400 transition-colors tracking-tight">
                             {data.role || data.degree}
                         </h3>
-                        <p className="text-slate-400 font-medium text-sm mt-1">
+                        <p className="text-slate-400 font-medium text-md md:text-lg mt-1">
                             {data.company || data.institution} {data.department ? `| ${data.department}` : ""}
                         </p>
                     </div>
@@ -129,14 +129,14 @@ function TimelineCard({ data }: { data: any }) {
                     </div>
                 </div>
 
-                <p className="text-slate-200 font-light leading-relaxed text-sm mb-4">
+                <p className="text-slate-200 font-light leading-relaxed text-lg mb-4">
                     {data.desc}
                 </p>
 
                 {data.points && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {data.points.map((point: string, i: number) => (
-                            <div key={i} className="flex items-center gap-2 text-xs text-slate-400">
+                            <div key={i} className="flex items-center gap-2 text-md md:text-lg text-slate-400">
                                 <CheckCircle2 size={12} className="text-cyan-500" />
                                 {point}
                             </div>
