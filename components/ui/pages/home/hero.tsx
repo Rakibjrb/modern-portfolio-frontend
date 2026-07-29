@@ -47,7 +47,7 @@ export default function Hero() {
                 >
                     <Button href="/explore">
                         <span className="relative z-10 flex items-center gap-3">
-                            My Universe
+                            CLICK & EXPLORE
                             <motion.span
                                 animate={{ x: [0, 5, 0] }}
                                 transition={{ repeat: Infinity, duration: 1.5 }}
