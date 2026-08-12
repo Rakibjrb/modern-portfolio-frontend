@@ -3,10 +3,10 @@
 import Rocket from "@/components/ui/Rocket";
 import { motion } from "framer-motion";
 
-const ChangePage = ({ children }: { children: React.ReactNode }) => {
+const ChangePage = ({ children, destination }: { children: React.ReactNode, destination?: string }) => {
     return (
         <>
-            <Rocket />
+            <Rocket destination={destination} />
 
             <motion.div
                 initial={{ opacity: 0, y: 500 }}

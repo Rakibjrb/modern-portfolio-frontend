@@ -10,7 +10,7 @@ export const Button = ({ href, children }: { href: string; children: React.React
         <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={() => router.push(href)}
-            className="cursor-pointer group relative px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full font-semibold tracking-[0.2em] uppercase text-xs transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_40px_rgba(34,211,238,0.2)]"
+            className="cursor-pointer group relative px-6 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full font-semibold tracking-[0.2em] uppercase text-xs transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_40px_rgba(34,211,238,0.2)]"
         >
             {children}
             {/* Button Glow Effect */}
