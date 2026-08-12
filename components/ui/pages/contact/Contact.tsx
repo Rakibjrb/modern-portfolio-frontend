@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Send, Mail, Github, Linkedin, MessageSquare } from "lucide-react";
 import BackButton from "@/components/shared/BackButton";
+import { Button } from "@/components/shared/Buttons";
 
 export default function DeepSpaceContactPage() {
     return (
@@ -36,8 +37,13 @@ export default function DeepSpaceContactPage() {
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10 h-full flex flex-col">
-                <div className="mb-10">
-                    <BackButton text="Go Back" />
+                <div className="mb-10 space-y-3">
+                    <Button href="/">
+                        SINGULARITY
+                        <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                            🚀
+                        </span>
+                    </Button>
                 </div>
 
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-20 items-center grow">
@@ -74,11 +80,11 @@ export default function DeepSpaceContactPage() {
                             {/* Socials */}
                             <div className="flex gap-4">
                                 {[
-                                    { icon: <Github />, link: "#", color: "hover:bg-slate-800" },
-                                    { icon: <Linkedin />, link: "#", color: "hover:bg-blue-950" },
-                                    { icon: <MessageSquare />, link: "#", color: "hover:bg-teal-950" },
+                                    { icon: <Github />, link: "https://github.com/rakibjrb", color: "hover:bg-slate-800" },
+                                    { icon: <Linkedin />, link: "https://linkedin.com/in/rakibul-dev19", color: "hover:bg-blue-950" },
                                 ].map((social, idx) => (
                                     <motion.a
+                                        target="_blank"
                                         key={idx}
                                         href={social.link}
                                         whileHover={{ y: -5, scale: 1.05 }}
@@ -144,7 +150,7 @@ export default function DeepSpaceContactPage() {
                                         backgroundColor: { repeat: Infinity, duration: 4 },
                                         boxShadow: { repeat: Infinity, duration: 2 }
                                     }}
-                                    className="w-full py-5 rounded-full font-extrabold tracking-[0.3em] uppercase text-xs flex items-center justify-center gap-3 text-white"
+                                    className="cursor-pointer w-full py-5 rounded-full font-extrabold tracking-[0.3em] uppercase text-xs flex items-center justify-center gap-3 text-white"
                                 >
                                     Transmit Signal <Send size={18} />
                                 </motion.button>

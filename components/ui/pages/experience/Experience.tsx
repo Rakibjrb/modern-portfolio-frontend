@@ -3,12 +3,13 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, Rocket, GraduationCap, School, Workflow } from "lucide-react";
 import BackButton from "@/components/shared/BackButton";
+import { Button } from "@/components/shared/Buttons";
 
 const experiences = [
     {
         type: "work",
         company: "NeexG Agency",
-        role: "Senior Executive, Developer Team",
+        role: "Full Stack Web Developer",
         period: "March 2026 - Present",
         desc: "Leading web development and automation projects. Specialized in building bulk mailing systems and custom business workflows.",
         points: ["Next.js & Node.js integration", "Client management"],
@@ -52,12 +53,20 @@ const education = [
 export default function MissionLogPage() {
     return (
         <main className="relative h-screen w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-scroll">
-            <div className="mb-12"><BackButton text="Go Back" /></div>
+            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
+                <BackButton text="Back" />
+                <Button href="/projects">
+                    Next Mission
+                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                        🚀
+                    </span>
+                </Button>
+            </div>
 
             {/* Background Decor */}
             <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10 pt-32 lg:pt-24">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -114,7 +123,7 @@ function TimelineCard({ data }: { data: any }) {
                 {data.icon}
             </div>
 
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all group">
+            <div className="bg-white/5 backdrop-blur-xs border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all group">
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                     <div>
                         <h3 className="text-xl md:text-3xl font-bold group-hover:text-blue-400 transition-colors tracking-tight">

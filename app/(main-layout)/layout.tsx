@@ -41,9 +41,9 @@ const blackHoleVariants = (pathname: string) => {
         default:
             return {
                 blackHoleBG: "bg-black",
-                eventHorizon1: "border-blue-500/30",
-                eventHorizon2: "border-cyan-400/40",
-                ambientLight: "bg-blue-600/10",
+                eventHorizon1: "border-white/100",
+                eventHorizon2: "border-white/100",
+                ambientLight: "bg-blue-500/0",
             }
     }
 }
@@ -104,18 +104,18 @@ export default function layout({
 
                 {/* Black Hole Center (The Anchor) */}
                 {pathname !== "/explore" && pathname !== "/contact" && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-                    <div className={`relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] ${blackHoleVariants(pathname).blackHoleBG} rounded-full shadow-[0_0_80px_20px_rgba(59,130,246,0.4)] flex items-center justify-center`}>
+                    <div className={`relative w-[200px] h-[200px] lg:w-[200px] lg:h-[200px] ${blackHoleVariants(pathname).blackHoleBG} rounded-full shadow-[0_0_80px_20px_rgba(0,0,155,0.1)] flex items-center justify-center`}>
 
                         {/* Event Horizon Layers */}
                         <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            className={`absolute w-[260px] h-[260px] lg:w-[400px] lg:h-[400px] rounded-full border-t-2 border-b-2 ${blackHoleVariants(pathname).eventHorizon1} blur-[2px]`}
+                            animate={{ rotate: -360 }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                            className={`absolute w-[260px] h-[260px] lg:w-[400px] lg:h-[400px] rounded-full border-t-1 border-b-1 ${blackHoleVariants(pathname).eventHorizon1} blur-[3px]`}
                         />
                         <motion.div
-                            animate={{ rotate: -360 }}
-                            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                            className={`absolute w-[200px] h-[200px] lg:w-[320px] lg:h-[320px] rounded-full border-l-2 border-r-2 ${blackHoleVariants(pathname).eventHorizon2} blur-[1px]`}
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className={`absolute w-[200px] h-[200px] lg:w-[320px] lg:h-[320px] rounded-full border-l-[0.5px] border-r-[0.5px] ${blackHoleVariants(pathname).eventHorizon2} blur-[3px]`}
                         />
 
                         {/* Blue Glow Ambient */}

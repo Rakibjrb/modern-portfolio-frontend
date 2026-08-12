@@ -16,6 +16,7 @@ import {
     Flame,
     Framer
 } from "lucide-react";
+import { Button } from "@/components/shared/Buttons";
 
 const skillsData = [
     { name: "React", icon: <Atom size={20} />, color: "from-blue-400 to-cyan-400" },
@@ -54,8 +55,14 @@ export default function SkillsUniversePage() {
     return (
         <main className="relative min-h-screen w-full text-white overflow-hidden p-6 font-sans">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[150px] pointer-events-none z-0" />
-            <div className="fixed top-8 left-8 z-50 pointer-events-auto">
-                <BackButton text="Go Back" />
+            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
+                <BackButton text="Back" />
+                <Button href="/experience">
+                    Next Mission
+                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                        🚀
+                    </span>
+                </Button>
             </div>
 
             <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">

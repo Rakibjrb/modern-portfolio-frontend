@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import BackButton from "@/components/shared/BackButton";
 import { User, Code, Zap, Cpu, Dumbbell, Terminal, CpuIcon, Flame, Mail, Gamepad2, Award } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/shared/Buttons";
 
 const galleryImages = [
     {
@@ -62,15 +63,21 @@ export default function About() {
 
     return (
         <main className="max-h-screen relative w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-auto font-sans">
-            <div className="mb-12">
-                <BackButton text="Go Back" />
+            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
+                <BackButton text="Back" />
+                <Button href="/skills">
+                    Next Mission
+                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                        🚀
+                    </span>
+                </Button>
             </div>
 
             {/* Background Nebula */}
             <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[150px] pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10 pt-32 lg:pt-24">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                     {/* Left Side: Identity Card (4 Columns) */}

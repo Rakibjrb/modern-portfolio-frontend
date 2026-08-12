@@ -4,13 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import BackButton from '@/components/shared/BackButton';
+import { Button } from '@/components/shared/Buttons';
 
 const planets = [
-    { name: "Skills", color: "bg-yellow-500", size: "w-24 h-24", radius: 0, duration: 0, path: "/skills", icon: "☀️" },
-    { name: "Projects", color: "bg-red-500", size: "w-9 h-9", radius: 80, duration: 20, path: "/projects", icon: "🔴" },
-    { name: "About Me", color: "bg-blue-400", size: "w-12 h-12", radius: 120, duration: 15, path: "/about", icon: "🌍" },
-    { name: "Experience", color: "bg-orange-300", size: "w-16 h-16", radius: 180, duration: 30, path: "/experience", icon: "🪐" },
-    { name: "Contact", color: "bg-purple-400", size: "w-8 h-8", radius: 240, duration: 40, path: "/contact", icon: "🌑" },
+    { name: "Skills", color: "bg-yellow-500/80", size: "w-20 h-20", radius: 0, duration: 0, path: "/skills", icon: "☀️" },
+    { name: "Projects", color: "bg-red-500", size: "w-5 h-5", radius: 80, duration: 20, path: "/projects", icon: "🔴" },
+    { name: "About Me", color: "bg-blue-400", size: "w-5 h-5", radius: 120, duration: 15, path: "/about", icon: "🌍" },
+    { name: "Experience", color: "bg-orange-300/0", size: "w-5 h-5", radius: 180, duration: 30, path: "/experience", icon: "🪐" },
+    { name: "Contact", color: "bg-purple-400", size: "w-5 h-5", radius: 240, duration: 40, path: "/contact", icon: "🌑" },
 ];
 
 
@@ -18,7 +19,7 @@ export default function ExploreSolarSystem() {
     const [asteroids, setAsteroids] = useState<{ id: number, startTop: string, startLeft: string, size: string, duration: number, xTarget: number, yTarget: number, emoji: string }[]>([]);
 
     useEffect(() => {
-        const generatedAsteroids = [...Array(2)].map((_, i) => {
+        const generatedAsteroids = [...Array(5)].map((_, i) => {
             const startTop = `${Math.random() * 40 + 80}%`;
             const startLeft = `${Math.random() * 60 - 20}%`;
 
@@ -30,7 +31,7 @@ export default function ExploreSolarSystem() {
                 startTop,
                 startLeft,
                 size: `${Math.random() * 10 + 2}px`,
-                duration: Math.random() * 15 + 15,
+                duration: Math.random() * 20 + 20,
                 xTarget,
                 yTarget,
                 emoji: "☄️"
@@ -42,8 +43,14 @@ export default function ExploreSolarSystem() {
 
     return (
         <div className="relative min-h-screen w-full bg-transparent p-6">
-            <div className="fixed top-6 left-6 z-[100] pointer-events-auto">
-                <BackButton text="Escape to Singularity" />
+            <div className="fixed top-6 left-6 z-[100] pointer-events-auto space-y-3">
+                <BackButton text="SINGULARITY" />
+                <Button href="/about">
+                    Next Mission
+                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                        🚀
+                    </span>
+                </Button>
             </div>
 
             <main className="w-full h-[calc(100vh-100px)] flex items-center justify-center overflow-hidden font-sans">
@@ -133,10 +140,15 @@ export default function ExploreSolarSystem() {
                                             }}
                                             className={`flex items-center justify-center ${planet.size} ${planet.color} rounded-full shadow-lg cursor-pointer group`}
                                         >
-                                            <span className="text-2xl">{planet.icon}</span>
+                                            <motion.span
+                                                animate={{ rotate: -360 }}
+                                                transition={{
+                                                    rotate: { repeat: Infinity, duration: planet.duration, ease: "linear" },
+                                                }}
+                                                className={`${planet.name === "Experience" ? "text-6xl" : "text-3xl"}`}>{planet.icon}</motion.span>
 
                                             {/* Label */}
-                                            <span className="text-center absolute -bottom-8 text-white text-[10px] font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100 bg-black/50 px-2 py-0.5 rounded transition-opacity whitespace-nowrap">
+                                            <span className="text-center absolute -bottom-8 text-white text-[10px] font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100 px-2 py-0.5 rounded transition-opacity whitespace-nowrap">
                                                 {planet.name}
                                             </span>
                                         </motion.div>

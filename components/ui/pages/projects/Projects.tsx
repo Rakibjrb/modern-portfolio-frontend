@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import BackButton from "@/components/shared/BackButton";
 import { ExternalLink, Github, Folder } from "lucide-react";
 import Pagination from "@/components/shared/Pagination";
+import { Button } from "@/components/shared/Buttons";
 
 const projects = [
     {
@@ -91,14 +92,20 @@ const projects = [
 export default function Projects() {
     return (
         <main className="relative h-screen w-full text-white p-6 overflow-x-hidden overflow-y-auto">
-            <div className="mb-16">
-                <BackButton text="Go Back" />
+            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
+                <BackButton text="Back" />
+                <Button href="/contact">
+                    Next Mission
+                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                        🚀
+                    </span>
+                </Button>
             </div>
 
             {/* Background Effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="max-w-7xl mx-auto relative z-10 pt-32 lg:pt-24">
 
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

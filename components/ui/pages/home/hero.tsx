@@ -34,7 +34,7 @@ export default function Hero() {
                     className="text-6xl md:text-8xl lg:text-[110px] font-extrabold tracking-tighter text-white"
                 >
                     {"I'm"}{" "}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 drop-shadow-sm">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-400 via-cyan-400 to-teal-400 drop-shadow-sm opacity-70">
                         Rakibul Hasan
                     </span>
                 </motion.h1>
