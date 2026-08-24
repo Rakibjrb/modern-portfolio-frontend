@@ -1,97 +1,92 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import BackButton from "@/components/shared/BackButton";
 import { ExternalLink, Github, Folder } from "lucide-react";
-import Pagination from "@/components/shared/Pagination";
 import { Button } from "@/components/shared/Buttons";
+import rawProjects from "@/public/projects.json";
 
-const projects = [
-    {
-        title: "Eco Tracker",
-        desc: "A smart system to monitor environmental changes using IoT.",
-        tech: ["React", "Node.js", "Arduino"],
-        link: "#",
-        github: "#",
-        color: "from-green-400 to-cyan-500",
-        icon: "🌍",
-        image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Astro Flow",
-        desc: "Automation workflow manager inspired by n8n architecture.",
-        tech: ["Next.js", "TypeScript", "n8n"],
-        link: "#",
-        github: "#",
-        color: "from-purple-500 to-indigo-600",
-        icon: "☄️",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Galaxy Chat",
-        desc: "Real-time communication app with end-to-end encryption.",
-        tech: ["Socket.io", "React", "Firebase"],
-        link: "#",
-        github: "#",
-        color: "from-blue-500 to-purple-600",
-        icon: "🛰️",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Eco Tracker",
-        desc: "A smart system to monitor environmental changes using IoT.",
-        tech: ["React", "Node.js", "Arduino"],
-        link: "#",
-        github: "#",
-        color: "from-green-400 to-cyan-500",
-        icon: "🌍",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Astro Flow",
-        desc: "Automation workflow manager inspired by n8n architecture.",
-        tech: ["Next.js", "TypeScript", "n8n"],
-        link: "#",
-        github: "#",
-        color: "from-purple-500 to-indigo-600",
-        icon: "☄️",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Galaxy Chat",
-        desc: "Real-time communication app with end-to-end encryption.",
-        tech: ["Socket.io", "React", "Firebase"],
-        link: "#",
-        github: "#",
-        color: "from-blue-500 to-purple-600",
-        icon: "🛰️",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Astro Flow",
-        desc: "Automation workflow manager inspired by n8n architecture.",
-        tech: ["Next.js", "TypeScript", "n8n"],
-        link: "#",
-        github: "#",
-        color: "from-purple-500 to-indigo-600",
-        icon: "☄️",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        title: "Galaxy Chat",
-        desc: "Real-time communication app with end-to-end encryption.",
-        tech: ["Socket.io", "React", "Firebase"],
-        link: "#",
-        github: "#",
-        color: "from-blue-500 to-purple-600",
-        icon: "🛰️",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
-    }
+const categoryStyles: Record<string, { color: string; icon: string }> = {
+    mern: { color: "from-green-400 to-cyan-500", icon: "🌍" },
+    frontend: { color: "from-purple-500 to-indigo-600", icon: "☄️" },
+    unique: { color: "from-blue-500 to-purple-600", icon: "🛰️" },
+    pending: { color: "from-amber-500 to-orange-600", icon: "🚀" },
+};
+
+const defaultGradients = [
+    "from-green-400 to-cyan-500",
+    "from-purple-500 to-indigo-600",
+    "from-blue-500 to-purple-600",
+    "from-pink-500 to-rose-600",
+    "from-amber-500 to-orange-600",
+    "from-cyan-500 to-blue-600",
 ];
 
+const projects = rawProjects.map((project, idx) => {
+    const categoryKey = (project.category || "").toLowerCase();
+    const style = categoryStyles[categoryKey] || {
+        color: defaultGradients[idx % defaultGradients.length],
+        icon: "🪐",
+    };
+
+    return {
+        id: project._id?.$oid || String(idx),
+        title: project.project_name,
+        desc: project.details,
+        tech: (project.techstacks || []).map((t: string) => t.trim()).filter(Boolean),
+        link: project.live_link,
+        github: project.client_code,
+        color: style.color,
+        icon: style.icon,
+        image: project.image,
+    };
+});
+
+const ITEMS_PER_BATCH = 6;
+
 export default function Projects() {
+    const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
+    const loaderRef = useRef<HTMLDivElement>(null);
+    const mainRef = useRef<HTMLElement>(null);
+
+    const hasMore = visibleCount < projects.length;
+    const visibleProjects = projects.slice(0, visibleCount);
+
+    useEffect(() => {
+        if (!hasMore) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setVisibleCount((prev) => Math.min(prev + ITEMS_PER_BATCH, projects.length));
+                }
+            },
+            {
+                root: mainRef.current,
+                rootMargin: "150px",
+                threshold: 0.1,
+            }
+        );
+
+        const currentLoader = loaderRef.current;
+        if (currentLoader) {
+            observer.observe(currentLoader);
+        }
+
+        return () => {
+            if (currentLoader) {
+                observer.unobserve(currentLoader);
+            }
+            observer.disconnect();
+        };
+    }, [hasMore, visibleCount]);
+
     return (
-        <main className="relative h-screen w-full text-white p-6 overflow-x-hidden overflow-y-auto">
+        <main
+            ref={mainRef}
+            className="relative h-screen w-full text-white p-6 overflow-x-hidden overflow-y-auto"
+        >
             <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
                 <BackButton text="Back" />
                 <Button href="/contact">
@@ -105,7 +100,7 @@ export default function Projects() {
             {/* Background Effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto relative z-10 pt-32 lg:pt-24">
+            <div className="max-w-7xl mx-auto relative z-10 pt-32 lg:pt-24 pb-20">
 
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -119,12 +114,17 @@ export default function Projects() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {projects.map((project, idx) => (
-                        <ProjectCard project={project} key={"Project-Card-" + idx} />
+                    {visibleProjects.map((project, idx) => (
+                        <ProjectCard project={project} key={project.id || "Project-Card-" + idx} />
                     ))}
                 </div>
 
-                <Pagination currentPage={1} totalPages={10} onPageChange={(pageNumber) => console.log(pageNumber)} />
+                {/* Infinite Scroll Sentinel / Loader */}
+                {hasMore && (
+                    <div ref={loaderRef} className="flex justify-center items-center py-16">
+                        <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-blue-500 animate-spin" />
+                    </div>
+                )}
             </div>
         </main>
     );
@@ -155,10 +155,12 @@ function ProjectCard({ project }: { project: { title: string, desc: string, tech
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-900/40 to-transparent" />
 
                     {/* Floating Planet/Category Icon */}
-                    <span className="absolute top-4 right-4 bg-neutral-950/60 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full text-xs font-semibold tracking-wider text-white flex items-center gap-1.5 shadow-lg">
-                        <span className="text-sm">{project.icon}</span>
-                        {project.tech[0]}
-                    </span>
+                    {project.tech.length > 0 && (
+                        <span className="absolute top-4 right-4 bg-neutral-950/60 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full text-xs font-semibold tracking-wider text-white flex items-center gap-1.5 shadow-lg">
+                            <span className="text-sm">{project.icon}</span>
+                            {project.tech[0]}
+                        </span>
+                    )}
                 </div>
 
                 {/* Project Content */}
