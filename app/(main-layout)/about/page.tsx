@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ChangePage from "@/components/shared/ChangePage";
 import About from "@/components/ui/pages/about/About";
 
 export const metadata: Metadata = {
@@ -9,9 +8,7 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
     return (
-        <ChangePage destination="Earth">
-            <About />
-        </ChangePage>
+        <About />
     )
 }
 

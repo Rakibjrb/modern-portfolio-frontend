@@ -1,5 +1,4 @@
 import Skills from "@/components/ui/pages/skills/Skills";
-import ChangePage from "@/components/shared/ChangePage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,9 +8,7 @@ export const metadata: Metadata = {
 
 const SkillsPage = () => {
     return (
-        <ChangePage destination="The Sun">
-            <Skills />
-        </ChangePage>
+        <Skills />
     )
 }
 
