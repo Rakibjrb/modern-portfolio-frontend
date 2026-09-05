@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Folder, Compass, Sparkles, RefreshCw } from "lucide-react";
 import { APIResponse } from "@/types/api.response.types";
@@ -7,6 +8,7 @@ import { IProject } from "@/types/projects.interface";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ProjectsSkeleton from "@/app/(main-layout)/projects/ProjectsSkeleton";
 
 const categoryStyles: Record<string, { color: string; icon: string }> = {
     mern: { color: "from-green-400 to-cyan-500", icon: "🌍" },
@@ -26,9 +28,64 @@ const defaultGradients = [
 
 // this is main project show component
 export default function Projects({ projectsData }: { projectsData: APIResponse }) {
-    const allProjects = projectsData.data as IProject[];
+    const initialProjects = projectsData.data as IProject[] || [];
+    const [projects, setProjects] = useState<IProject[]>(initialProjects);
+    const [page, setPage] = useState<number>(2);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [hasMore, setHasMore] = useState<boolean>(true);
 
-    const projects = allProjects.map((project: IProject, idx: number) => {
+    const observerRef = useRef<HTMLDivElement | null>(null);
+
+    // Function to fetch more projects
+    const loadMoreProjects = useCallback(async () => {
+        if (loading || !hasMore) return;
+
+        setLoading(true);
+
+        try {
+            const res = await fetch(`/api/projects?page=${page}&limit=9`); // used nextjs rewrite function
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch more projects");
+            }
+
+            const newData: APIResponse = await res.json();
+
+            if (!newData || (newData.data as unknown as IProject[]).length === 0) {
+                setHasMore(false);
+            } else {
+                setProjects((prev) => [...prev, ...newData.data as IProject[]]);
+                setPage((prevPage) => prevPage + 1);
+            }
+        } catch (error) {
+            console.error("Error loading more projects:", error);
+        } finally {
+            setLoading(false);
+        }
+    }, [page, loading, hasMore]);
+
+    // Setup Intersection Observer
+    useEffect(() => {
+        const target = observerRef.current;
+        if (!target) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && hasMore && !loading) {
+                    loadMoreProjects();
+                }
+            },
+            { threshold: 0.5 }
+        );
+
+        observer.observe(target);
+
+        return () => {
+            if (target) observer.unobserve(target);
+        };
+    }, [loadMoreProjects, hasMore, loading]);
+
+    const allProjects = projects.map((project: IProject, idx: number) => {
         const categoryKey = (project.category || "").toLowerCase();
         const style = categoryStyles[categoryKey] || {
             color: defaultGradients[idx % defaultGradients.length],
@@ -48,15 +105,27 @@ export default function Projects({ projectsData }: { projectsData: APIResponse }
         };
     });
 
-    if (!projects || projects.length === 0) {
+    if (!allProjects || allProjects.length === 0) {
         return <NoProjectFound />;
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {projects.map((project, idx: number) => (
-                <ProjectCard project={project} key={project.id || "Project-Card-" + idx} />
-            ))}
+        <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {allProjects.map((project, idx: number) => (
+                    <ProjectCard project={project} key={project.id || "Project-Card-" + idx} />
+                ))}
+
+                {/* Target element for Intersection Observer */}
+                {loading && <ProjectsSkeleton />}
+                <div ref={observerRef} className="h-auto w-full mt-10"></div>
+            </div>
+
+            {!hasMore && (
+                <p className="text-center text-slate-500 my-8 text-sm">
+                    No more projects to load.
+                </p>
+            )}
         </div>
     );
 }
@@ -99,7 +168,7 @@ function ProjectCard({
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                         width={500}
                         height={500}
-                        loading="lazy"
+                        loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-900/40 to-transparent" />
 

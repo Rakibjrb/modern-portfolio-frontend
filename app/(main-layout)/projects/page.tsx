@@ -11,11 +11,12 @@ export const metadata: Metadata = {
 };
 
 const getProjects = async (): Promise<APIResponse> => {
-    // await new Promise((resolve) => setTimeout(resolve, 10000));
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/projects`, {
-        cache: 'no-store',
-    });
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/projects?page=1&limit=9`,
+        {
+            cache: 'no-store',
+        }
+    );
 
     if (!res.ok) {
         throw new Error("Failed to fetch projects");
@@ -49,9 +50,9 @@ const ProjectsPage = () => {
                     <p className="text-slate-400 mt-4 tracking-[0.3em] uppercase text-xs">Featured work & Experiments</p>
                 </div>
 
-                {/* <ProjectsSkeleton /> */}
-
-                <SuspenseWrapper fallback={<ProjectsSkeleton />}>
+                <SuspenseWrapper fallback={<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <ProjectsSkeleton />
+                </div>}>
                     <SuspenseContent />
                 </SuspenseWrapper>
             </div>
