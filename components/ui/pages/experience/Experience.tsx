@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, Rocket, GraduationCap, School, Workflow } from "lucide-react";
-import BackButton from "@/components/shared/BackButton";
-import { Button } from "@/components/shared/Buttons";
+import ChangePageButton from "@/components/shared/ChangePageButton";
 
 const experiences = [
     {
@@ -53,15 +52,7 @@ const education = [
 export default function MissionLogPage() {
     return (
         <main className="relative h-screen w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-scroll">
-            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
-                <BackButton text="Back" />
-                <Button href="/projects">
-                    Next Mission
-                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
-                        🚀
-                    </span>
-                </Button>
-            </div>
+            <ChangePageButton text="Planet Skills" destination="/skills" />
 
             {/* Background Decor */}
             <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] pointer-events-none" />

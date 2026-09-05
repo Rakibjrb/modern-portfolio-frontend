@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import BackButton from '@/components/shared/BackButton';
-import { Button } from '@/components/shared/Buttons';
+import ChangePageButton from '@/components/shared/ChangePageButton';
 
 const planets = [
     { name: "Skills", color: "bg-yellow-500/80", size: "w-20 h-20", radius: 0, duration: 0, path: "/skills", icon: "☀️" },
@@ -43,15 +42,7 @@ export default function ExploreSolarSystem() {
 
     return (
         <div className="relative min-h-screen w-full bg-transparent p-6">
-            <div className="fixed top-6 left-6 z-[100] pointer-events-auto space-y-3">
-                <BackButton text="SINGULARITY" />
-                <Button href="/about">
-                    Next Mission
-                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
-                        🚀
-                    </span>
-                </Button>
-            </div>
+            <ChangePageButton text='Start Mission' destination='/about' />
 
             <main className="w-full h-[calc(100vh-100px)] flex items-center justify-center overflow-hidden font-sans">
                 {/* flying Asteroids */}

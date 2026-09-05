@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import BackButton from "@/components/shared/BackButton";
 import { useEffect, useState } from "react";
 import {
     Atom,
@@ -16,7 +15,7 @@ import {
     Flame,
     Framer
 } from "lucide-react";
-import { Button } from "@/components/shared/Buttons";
+import ChangePageButton from "@/components/shared/ChangePageButton";
 
 const skillsData = [
     { name: "React", icon: <Atom size={20} />, color: "from-blue-400 to-cyan-400" },
@@ -55,15 +54,7 @@ export default function SkillsUniversePage() {
     return (
         <main className="relative min-h-screen w-full text-white overflow-hidden p-6 font-sans">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[150px] pointer-events-none z-0" />
-            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
-                <BackButton text="Back" />
-                <Button href="/experience">
-                    Next Mission
-                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
-                        🚀
-                    </span>
-                </Button>
-            </div>
+            <ChangePageButton text="Planet Projects" destination="/projects" />
 
             <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
                 {swirlingSkills.map((skill) => (
@@ -108,7 +99,7 @@ export default function SkillsUniversePage() {
                 ))}
             </div>
 
-            {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 pointer-events-none">
+            {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 pointer-events-none opacity-10">
                 <h1 className="text-6xl md:text-9xl font-extrabold tracking-tighter text-yellow-400">
                     MY<br />SKILLS
                 </h1>

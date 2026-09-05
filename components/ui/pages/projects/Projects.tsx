@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import BackButton from "@/components/shared/BackButton";
 import { ExternalLink, Github, Folder } from "lucide-react";
-import { Button } from "@/components/shared/Buttons";
 import rawProjects from "@/public/projects.json";
+import ChangePageButton from "@/components/shared/ChangePageButton";
 
 const categoryStyles: Record<string, { color: string; icon: string }> = {
     mern: { color: "from-green-400 to-cyan-500", icon: "🌍" },
@@ -87,15 +86,7 @@ export default function Projects() {
             ref={mainRef}
             className="relative h-screen w-full text-white p-6 overflow-x-hidden overflow-y-auto"
         >
-            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
-                <BackButton text="Back" />
-                <Button href="/contact">
-                    Next Mission
-                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
-                        🚀
-                    </span>
-                </Button>
-            </div>
+            <ChangePageButton text="Contact Me" destination="/contact" />
 
             {/* Background Effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />

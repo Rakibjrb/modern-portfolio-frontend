@@ -9,7 +9,7 @@ const ChangePage = ({ children, destination }: { children: React.ReactNode, dest
             <Rocket destination={destination} />
 
             <motion.div
-                initial={{ opacity: 0, y: 500 }}
+                initial={{ opacity: 0, y: -300 }}
                 animate={{ opacity: 1, y: -300 }}
                 transition={{ duration: 2, delay: 2 }}
             >
