@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import BackButton from "@/components/shared/BackButton";
-import { User, Code, Zap, Cpu, Dumbbell, Terminal, CpuIcon, Flame, Mail, Gamepad2, Award } from "lucide-react";
+import { Code, Zap, Cpu, Terminal, CpuIcon, Gamepad2, Award } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/shared/Buttons";
+import ChangePageButton from "@/components/shared/ChangePageButton";
 
 const galleryImages = [
     {
@@ -63,15 +62,7 @@ export default function About() {
 
     return (
         <main className="max-h-screen relative w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-auto font-sans">
-            <div className="fixed top-8 left-8 z-50 pointer-events-auto space-y-3">
-                <BackButton text="Back" />
-                <Button href="/skills">
-                    Next Mission
-                    <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
-                        🚀
-                    </span>
-                </Button>
-            </div>
+            <ChangePageButton text="Planet Experience" destination="/experience" />
 
             {/* Background Nebula */}
             <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />

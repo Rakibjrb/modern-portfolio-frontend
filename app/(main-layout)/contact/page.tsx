@@ -9,9 +9,7 @@ export const metadata: Metadata = {
 
 const ContactPage = () => {
     return (
-        <ChangePage destination="Communication HUB">
-            <Contact />
-        </ChangePage>
+        <Contact />
     )
 };
 

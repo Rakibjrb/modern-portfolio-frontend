@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ChangePage from "@/components/shared/ChangePage";
 import ExploreSolarSystem from "@/components/ui/pages/explore/ExploreSolarSystem";
 
 export const metadata: Metadata = {
@@ -9,9 +8,7 @@ export const metadata: Metadata = {
 
 const Explore = () => {
     return (
-        <ChangePage destination="The Orbit">
-            <ExploreSolarSystem />
-        </ChangePage>
+        <ExploreSolarSystem />
     )
 }
 
