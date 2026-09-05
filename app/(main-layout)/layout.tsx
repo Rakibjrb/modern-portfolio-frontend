@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 
 const blackHoleVariants = (pathname: string) => {
     switch (pathname) {
@@ -72,7 +73,9 @@ export default function layout({
         <div className="relative main-layout">
             <div className="absolute top-0 left-0 w-full h-full z-50">
                 {children}
+                <ScrollToTop />
             </div>
+
 
             <div className="absolute top-0 left-0 w-full h-full z-0">
                 {/* Background Swirling Stars */}
