@@ -18,10 +18,12 @@ export default function MissionLogPage({ experienceData }: { experienceData: API
             month: "long",
             day: "numeric",
             year: "numeric",
+            timeZone: "UTC",
         }).replace(",", "")} - ${new Date(experience.endDate).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",
+            timeZone: "UTC",
         }).replace(",", "")}`,
         desc: experience.description,
         points: experience.responsibilities,
@@ -39,10 +41,12 @@ export default function MissionLogPage({ experienceData }: { experienceData: API
             month: "long",
             day: "numeric",
             year: "numeric",
+            timeZone: "UTC",
         }).replace(",", "")} - ${new Date(education.endDate).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",
+            timeZone: "UTC",
         }).replace(",", "")}`,
         desc: education.description,
         icon: <GraduationCap className="text-purple-400" />
@@ -149,7 +153,7 @@ function TimelineCard({ data }: { data: any }) {
                     <div className="mt-6">
                         <h5 className="mb-3">Achivements</h5>
                         <div className="grid grid-cols-1 gap-2">
-                            {data.points.map((point: string, i: number) => (
+                            {data.achivements.map((point: string, i: number) => (
                                 <div key={i} className="flex items-center gap-2 text-md md:text-lg text-slate-400">
                                     <CheckCircle2 size={12} className="text-cyan-500" />
                                     <span className="text-sm italic">{point}</span>
