@@ -1,4 +1,5 @@
 import Skills from "@/components/ui/pages/skills/Skills";
+import { getAbout } from "@/helper/fetchData";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,9 +7,11 @@ export const metadata: Metadata = {
     description: "Skills of Rakibul Hasan",
 };
 
-const SkillsPage = () => {
+const SkillsPage = async () => {
+    const data = await getAbout();
+
     return (
-        <Skills />
+        <Skills skills={data.skills} />
     )
 }
 
