@@ -4,8 +4,8 @@ export interface IProfessionalExperience {
     title: string;
     organization: string;
     description: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     responsibilities: string[];
     achievements: string[];
     location: string;
@@ -18,8 +18,8 @@ export interface IAcademicQualification {
     title: string;
     organization: string;
     description: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     degree: string;
     fieldOfStudy: string;
     result: string;

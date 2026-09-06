@@ -3,30 +3,16 @@ import { Suspense as SuspenseWrapper } from "react";
 import Projects from "@/components/ui/pages/projects/Projects";
 import ChangePageButton from "@/components/shared/ChangePageButton";
 import ProjectsSkeleton from "./ProjectsSkeleton";
-import { APIResponse } from "@/types/api.response.types";
+import { getProjects } from "@/helper/fetchData";
 
 export const metadata: Metadata = {
     title: "Planet | Projects - Rakibul Hasan Portfolio",
     description: "Work showcase | Rakibul Hasan",
 };
 
-const getProjects = async (): Promise<APIResponse> => {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/projects?page=1&limit=9`,
-        {
-            next: { revalidate: 60 },
-        }
-    );
-
-    if (!res.ok) {
-        throw new Error("Failed to fetch projects");
-    }
-
-    return res.json();
-};
-
 const SuspenseContent = async () => {
     const projects = await getProjects();
+
     return <Projects projectsData={projects} />;
 };
 

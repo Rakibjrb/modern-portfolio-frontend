@@ -3,11 +3,9 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, Rocket, GraduationCap } from "lucide-react";
 import ChangePageButton from "@/components/shared/ChangePageButton";
-import { APIResponse } from "@/types/api.response.types";
 import { IAcademicQualification, IExperience, IProfessionalExperience } from "@/types/experience.interface";
 
-export default function MissionLogPage({ experienceData }: { experienceData: APIResponse }) {
-    const experience: IExperience = experienceData.data || {};
+export default function MissionLogPage({ experienceData: experience }: { experienceData: IExperience }) {
 
     const experiences = experience.professional.map((experience: IProfessionalExperience) => ({
         id: experience._id,

@@ -31,8 +31,7 @@ const galleryImages = [
     }
 ];
 
-export default function About({ aboutData }: { aboutData: APIResponse }) {
-    const about: IAbout = aboutData.data || {};
+export default function About({ aboutData: about }: { aboutData: IAbout }) {
 
     // English comments strictly added
     const stats = [

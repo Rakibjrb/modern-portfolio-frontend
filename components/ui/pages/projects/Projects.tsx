@@ -27,8 +27,7 @@ const defaultGradients = [
 ];
 
 // this is main project show component
-export default function Projects({ projectsData }: { projectsData: APIResponse }) {
-    const initialProjects = projectsData.data as IProject[] || [];
+export default function Projects({ projectsData: initialProjects }: { projectsData: IProject[] }) {
     const [projects, setProjects] = useState<IProject[]>(initialProjects);
     const [page, setPage] = useState<number>(2);
     const [loading, setLoading] = useState<boolean>(false);

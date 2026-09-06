@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Mail, Github, Linkedin, CheckCircle2, AlertCircle, X, Loader2 } from "lucide-react";
+import { Send, Mail, CheckCircle2, AlertCircle, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/shared/Buttons";
 import { submitContactForm } from "@/app/actions/contact";
 import { useState } from "react";
@@ -107,7 +107,6 @@ export default function DeepSpaceContactPage({ contactData }: { contactData: { c
                         {/* Direct Contact Info */}
                         <div className="pt-8 space-y-6 max-w-sm">
                             <a
-                                href="mailto:contact@rakibul.com"
                                 className="flex items-center gap-5 text-slate-300 hover:text-white transition-colors cursor-pointer group p-3 bg-white/5 border border-white/5 rounded-2xl hover:border-white/10 hover:shadow-xl"
                             >
                                 <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 transition-all text-blue-400 group-hover:bg-blue-900/10">

@@ -1,38 +1,16 @@
 import type { Metadata } from "next";
 import Contact from "@/components/ui/pages/contact/Contact";
-import { APIResponse } from "@/types/api.response.types";
-import { IAbout, IContacts, ISocialLink } from "@/types/about.interface";
+import { IAbout } from "@/types/about.interface";
+import { getAbout } from "@/helper/fetchData";
 
 export const metadata: Metadata = {
     title: "Transmit | Contact - Rakibul Hasan Portfolio",
     description: "Communicate with Rakibul Hasan",
 };
 
-const getContact = async (): Promise<APIResponse> => {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/about`,
-        {
-            next: { revalidate: 60 },
-        }
-    );
-
-    if (!res.ok) {
-        throw new Error("Failed to fetch projects");
-    }
-
-    return res.json();
-};
-
-
 const ContactPage = async () => {
-    let contactData: { contacts: IContacts, socialLinks: ISocialLink[] } | any;
-    try {
-        const response: IAbout = (await getContact()).data;
-        contactData = {
-            contacts: response.contacts,
-            socialLinks: response.socialsLinks
-        }
-    } catch { }
+    const data: IAbout = await getAbout();
+    const contactData = { contacts: data.contacts, socialLinks: data.socialsLinks };
 
     return (
         <Contact contactData={contactData} />
