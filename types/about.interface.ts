@@ -15,6 +15,7 @@ export interface ISkill {
 
 // Type for Contacts object
 export interface IContacts {
+    _id?: string;
     phone: string;
     email: string;
 }
