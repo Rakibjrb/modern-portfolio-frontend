@@ -1,63 +1,63 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Rocket, GraduationCap, School, Workflow } from "lucide-react";
+import { CheckCircle2, Rocket, GraduationCap } from "lucide-react";
 import ChangePageButton from "@/components/shared/ChangePageButton";
+import { IAcademicQualification, IExperience, IProfessionalExperience } from "@/types/experience.interface";
 
-const experiences = [
-    {
-        type: "work",
-        company: "NeexG Agency",
-        role: "Full Stack Web Developer",
-        period: "March 2026 - Present",
-        desc: "Leading web development and automation projects. Specialized in building bulk mailing systems and custom business workflows.",
-        points: ["Next.js & Node.js integration", "Client management"],
-        icon: <Rocket className="text-blue-400" />
-    },
-    {
-        type: "work",
-        company: "NeexG Agency",
-        role: "n8n Automation Expert",
-        period: "2025 - 2026",
-        desc: "Designed and deployed complex autonomous workflows using n8n to connect various SaaS platforms and automate repetitive business processes.",
-        points: [
-            "Custom API & Webhook Integration",
-            "Multi-node Workflow Architecture",
-            "Data Transformation & Error Handling"
-        ],
-        icon: <Workflow className="text-cyan-400" />
-    }
-];
+export default function MissionLogPage({ experienceData: experience }: { experienceData: IExperience }) {
 
-const education = [
-    {
+    const experiences = experience.professional.map((experience: IProfessionalExperience) => ({
+        id: experience._id,
+        type: experience.type,
+        company: experience.organization,
+        role: experience.title,
+        period: `${new Date(experience.startDate).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC",
+        }).replace(",", "")} - ${new Date(experience.endDate).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC",
+        }).replace(",", "")}`,
+        desc: experience.description,
+        points: experience.responsibilities,
+        achivements: experience.achievements,
+        icon: <Rocket className="text-cyan-400" />
+    }));
+
+    const educations = experience.academic.map((education: IAcademicQualification) => ({
+        id: education._id,
         type: "edu",
-        institution: "Bogura Polytechnic Institute",
-        degree: "Diploma in Engineering",
-        department: "Computer Science & Technology",
-        period: "2023 - Present",
-        desc: "Focusing on CST core subjects like Data Structures, Algorithms, and System Design.",
+        institution: education.organization,
+        degree: education.degree,
+        department: education.fieldOfStudy,
+        period: `${new Date(education.startDate).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC",
+        }).replace(",", "")} - ${new Date(education.endDate).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC",
+        }).replace(",", "")}`,
+        desc: education.description,
         icon: <GraduationCap className="text-purple-400" />
-    },
-    {
-        type: "edu",
-        institution: "Kella High School",
-        degree: "SSC (Science)",
-        period: "Passed 2023",
-        desc: "Developed early interest in science and technology from the secondary level.",
-        icon: <School className="text-emerald-400" />
-    }
-];
+    }));
 
-export default function MissionLogPage() {
     return (
-        <main className="relative h-screen w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-scroll">
+        <main className="relative h-screen w-full text-white p-6 pb-12 overflow-x-hidden overflow-y-scroll">
             <ChangePageButton text="Planet Skills" destination="/skills" />
 
             {/* Background Decor */}
             <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto relative z-10 pt-32 lg:pt-24">
+            <div className="max-w-6xl mx-auto relative z-10 pt-32 lg:pt-12">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export default function MissionLogPage() {
                     </h2>
 
                     <div className="relative border-l-2 border-white/10 ml-4 md:ml-8 pl-8 md:pl-12 space-y-12">
-                        {education.map((edu, idx) => (
+                        {educations.map((edu, idx) => (
                             <TimelineCard key={idx} data={edu} />
                         ))}
                     </div>
@@ -134,13 +134,30 @@ function TimelineCard({ data }: { data: any }) {
                 </p>
 
                 {data.points && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {data.points.map((point: string, i: number) => (
-                            <div key={i} className="flex items-center gap-2 text-md md:text-lg text-slate-400">
-                                <CheckCircle2 size={12} className="text-cyan-500" />
-                                {point}
-                            </div>
-                        ))}
+                    <div>
+                        <h5 className="mb-3">Responsibilities</h5>
+                        <div className="grid grid-cols-1 gap-2">
+                            {data.points.map((point: string, i: number) => (
+                                <div key={i} className="flex items-center gap-2 text-md md:text-lg text-slate-400">
+                                    <CheckCircle2 size={12} className="text-cyan-500" />
+                                    <span className="text-sm italic">{point}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {data.achivements && (
+                    <div className="mt-6">
+                        <h5 className="mb-3">Achivements</h5>
+                        <div className="grid grid-cols-1 gap-2">
+                            {data.achivements.map((point: string, i: number) => (
+                                <div key={i} className="flex items-center gap-2 text-md md:text-lg text-slate-400">
+                                    <CheckCircle2 size={12} className="text-cyan-500" />
+                                    <span className="text-sm italic">{point}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { Code, Zap, Cpu, Terminal, CpuIcon, Gamepad2, Award } from "lucide-react";
 import Image from "next/image";
 import ChangePageButton from "@/components/shared/ChangePageButton";
+import { APIResponse } from "@/types/api.response.types";
+import { IAbout } from "@/types/about.interface";
+import ButtonGhost, { Button } from "@/components/shared/Buttons";
 
 const galleryImages = [
     {
@@ -28,13 +31,14 @@ const galleryImages = [
     }
 ];
 
-export default function About() {
+export default function About({ aboutData: about }: { aboutData: IAbout }) {
+
     // English comments strictly added
     const stats = [
-        { label: "Experience", value: "2+ Years", icon: <Zap size={16} /> },
-        { label: "Tech Stack", value: "Next.js & MERN", icon: <Code size={16} /> },
-        { label: "Projects", value: "30+ Completed", icon: <Terminal size={16} /> },
-        { label: "Role", value: "Founding Member, NeexG Agency", icon: <Award size={16} /> },
+        { label: "Experience", value: `${about.experience || 2}+ Years`, icon: <Zap size={16} /> },
+        { label: "Tech Stack", value: about.techstack || "Next.js & MERN", icon: <Code size={16} /> },
+        { label: "Projects", value: `${about.completedProjects || 30}+ Completed`, icon: <Terminal size={16} /> },
+        { label: "Role", value: `${about.currentRole || "Web Developer"}`, icon: <Award size={16} /> },
     ];
 
     const highlights = [
@@ -61,14 +65,14 @@ export default function About() {
     ];
 
     return (
-        <main className="max-h-screen relative w-full text-white p-6 md:p-12 overflow-x-hidden overflow-y-auto font-sans">
+        <main className="max-h-screen relative w-full text-white p-6 md:pb-12 overflow-x-hidden overflow-y-auto font-sans">
             <ChangePageButton text="Planet Experience" destination="/experience" />
 
             {/* Background Nebula */}
             <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[150px] pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto relative z-10 pt-32 lg:pt-24">
+            <div className="max-w-6xl mx-auto relative z-10 pt-32 lg:pt-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                     {/* Left Side: Identity Card (4 Columns) */}
@@ -84,12 +88,12 @@ export default function About() {
                                 {/* Profile Image */}
                                 <div className="w-[280px] h-[380px] mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-600 to-cyan-400 p-[2px]">
                                     <div className="w-full h-full bg-[#080808] rounded-3xl flex items-center justify-center overflow-hidden">
-                                        <Image className="w-full h-full object-cover" src={"/my-pic.jpg"} width={280} height={380} alt="Rakibul Hassan" />
+                                        <Image className="w-full h-full object-cover" src={about.image || "/my-pic.jpg"} width={280} height={380} alt="Rakibul Hassan" priority />
                                     </div>
                                 </div>
 
-                                <h2 className="text-2xl font-bold tracking-tight">Rakibul Hassan</h2>
-                                <p className="text-blue-400 text-sm tracking-widest uppercase mt-2 font-medium">Full-Stack & Automation Architect</p>
+                                <h2 className="text-2xl font-bold tracking-tight">{about.name || "Rakibul Hasan"}</h2>
+                                <p className="text-blue-400 text-sm tracking-widest uppercase mt-2 font-medium">{about.designation || "Full-Stack & Automation Architect"}</p>
 
                                 <div className="grid grid-cols-1 gap-3 mt-8 text-left">
                                     {stats.map((stat, i) => (
@@ -119,7 +123,7 @@ export default function About() {
                                 The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 italic">Origin</span> Story
                             </h1>
                             <p className="text-slate-200 text-lg md:text-xl font-light leading-relaxed text-justify">
-                                I am a Computer Science & Technology student at Bogura Polytechnic Institute, driven by the challenge of bridging software, hardware, and automation. As a founding member of NeexG Agency, I build scalable full-stack applications with Next.js, optimize background systems (like worker thread mailing tools), and design custom IoT hardware solutions—from automated fish breeding systems to long-range wireless controllers.
+                                {about.description || "Description not available ..."}
                             </p>
                         </section>
 
@@ -135,7 +139,7 @@ export default function About() {
                                         {item.icon}
                                     </div>
                                     <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                    <p className="text-sm text-slate-300 font-light leading-snug">{item.desc}</p>
+                                    <p className="text-lg text-slate-300 font-light leading-snug">{item.desc}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -144,8 +148,15 @@ export default function About() {
                         <div className="p-8 rounded-[2rem] bg-gradient-to-r from-blue-900/20 to-transparent border-l-4 border-blue-500">
                             <h4 className="text-xs uppercase tracking-[0.4em] text-blue-400 mb-4">Core Philosophy</h4>
                             <p className="text-xl italic font-light text-slate-200">
-                                "Teach & Repeat" — Building intelligent systems through dashboards that learn user workflows once and execute them autonomously forever.
+                                {about.quote || "Not available ..."}
                             </p>
+                        </div>
+
+                        <div className="flex items-center gap-6">
+                            <ButtonGhost href="/contact">Contact Now</ButtonGhost>
+                            <Button href={about.cvlink || "/"}>
+                                <span className="relative z-10">Download CV</span>
+                            </Button>
                         </div>
                     </motion.div>
 

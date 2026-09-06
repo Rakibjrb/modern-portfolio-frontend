@@ -9,14 +9,14 @@ export default function ChangePageButton({ text, destination }: { text: string, 
         <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 3, delay: 2 }}
+            transition={{ duration: 2, delay: 1 }}
             className="w-full fixed top-6 left-0 px-4 z-[100] pointer-events-auto space-y-3 flex items-start justify-between">
             <div className="pt-1">
                 <BackButton />
             </div>
             <Button href={destination ? destination : "/"}>
-                {text}
-                <span className="ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="relative z-10">{text}</span>
+                <span className="relative z-10 ml-2 text-md group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
                     🚀
                 </span>
             </Button>

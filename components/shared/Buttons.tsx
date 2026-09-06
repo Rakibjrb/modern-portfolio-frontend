@@ -14,7 +14,19 @@ export const Button = ({ href, children }: { href: string; children: React.React
         >
             {children}
             {/* Button Glow Effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-full blur-md opacity-80 transition-opacity duration-500 animate-pulse" />
         </motion.button>
     )
 }
+
+const ButtonGhost = ({ href = "Ghost", children }: { href: string, children: React.ReactNode }) => {
+    const router = useRouter();
+
+    return (
+        <motion.button whileHover={{ scale: 1.1 }} onClick={() => router.push(href)} className="cursor-pointer px-6 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-medium tracking-wider shadow-[0_4px_30px_rgba(0,0,0,0.1)] hover:bg-white/20 hover:border-white/40 transition-all duration-300 active:scale-95 flex items-center gap-2 group">
+            {children}
+        </motion.button>
+    )
+};
+
+export default ButtonGhost;
