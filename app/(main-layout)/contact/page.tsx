@@ -3,7 +3,7 @@ import ChangePage from "@/components/shared/ChangePage";
 import Contact from "@/components/ui/pages/contact/Contact";
 
 export const metadata: Metadata = {
-    title: "Radio Station | Contact",
+    title: "Transmit | Contact - Rakibul Hasan Portfolio",
     description: "Communicate with Rakibul Hasan",
 };
 

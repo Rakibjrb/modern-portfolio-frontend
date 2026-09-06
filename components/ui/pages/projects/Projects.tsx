@@ -51,7 +51,7 @@ export default function Projects({ projectsData }: { projectsData: APIResponse }
 
             const newData: APIResponse = await res.json();
 
-            if (!newData || (newData.data as unknown as IProject[]).length === 0) {
+            if (!newData || newData.data.length === 0) {
                 setHasMore(false);
             } else {
                 setProjects((prev) => [...prev, ...newData.data as IProject[]]);

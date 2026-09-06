@@ -2,7 +2,7 @@ import Skills from "@/components/ui/pages/skills/Skills";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Skills | Rakibul Hasan",
+    title: "Planet | Skills - Rakibul Hasan Portfolio",
     description: "Skills of Rakibul Hasan",
 };
 

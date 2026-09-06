@@ -6,7 +6,7 @@ import ProjectsSkeleton from "./ProjectsSkeleton";
 import { APIResponse } from "@/types/api.response.types";
 
 export const metadata: Metadata = {
-    title: "Planet Venus | Projects",
+    title: "Planet | Projects - Rakibul Hasan Portfolio",
     description: "Work showcase | Rakibul Hasan",
 };
 
@@ -14,7 +14,7 @@ const getProjects = async (): Promise<APIResponse> => {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/projects?page=1&limit=9`,
         {
-            cache: 'no-store',
+            next: { revalidate: 60 },
         }
     );
 

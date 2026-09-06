@@ -1,4 +1,4 @@
-export type APIResponse = {
+export type APIResponse<T = any> = {
     success: boolean;
     status: number;
     path?: string;
@@ -9,5 +9,5 @@ export type APIResponse = {
         total: number;
         totalPages: number;
     };
-    data: any[] | null;
-}
+    data: T | T[] | Record<string, any> | null;
+};
