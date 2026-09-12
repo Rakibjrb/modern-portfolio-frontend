@@ -44,7 +44,7 @@ export default function DeepSpaceContactPage({ contactData }: { contactData: { c
     };
 
     return (
-        <main className="relative min-h-screen w-full text-white p-6 md:p-10 overflow-x-hidden overflow-y-auto font-sans">
+        <main className="relative h-screen w-full text-white p-6 md:p-10 overflow-x-hidden overflow-y-auto font-sans">
             {/* Background Radar / Orbit Animations */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
                 {[...Array(7)].map((_, i) => (
