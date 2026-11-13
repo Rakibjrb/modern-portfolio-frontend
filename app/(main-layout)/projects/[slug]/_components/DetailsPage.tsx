@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { IProject } from "@/types/projects.interface";
+import MarkdownDescription from "./MarkdownDescription";
 
 const categoryStyles: Record<
   string,
@@ -292,11 +293,9 @@ const DetailsPageComponent = ({ project }: { project: IProject }) => {
             <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
               <span className="text-blue-400">#</span> About The Project
             </h2>
-            <div className="text-slate-300 leading-relaxed font-light whitespace-pre-line text-base sm:text-lg">
-              {project.fullDescription ||
-                project.shortDescription ||
-                "No detailed description provided."}
-            </div>
+            <MarkdownDescription
+              content={project.fullDescription || project.shortDescription}
+            />
           </motion.section>
         </div>
 

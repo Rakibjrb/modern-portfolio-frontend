@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/helper/fetchData";
 import DetailsSkeleton from "./_components/DetailsSkeleton";
 import DetailsPageComponent from "./_components/DetailsPage";
-import ChangePageButton from "@/components/shared/ChangePageButton";
+// import ChangePageButton from "@/components/shared/ChangePageButton";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,7 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${project.title} | Projects - Rakibul Hasan Portfolio`,
-    description: project.shortDescription || project.fullDescription || `Details of ${project.title}`,
+    description:
+      project.shortDescription ||
+      project.fullDescription ||
+      `Details of ${project.title}`,
     openGraph: {
       title: project.title,
       description: project.shortDescription || project.fullDescription,
@@ -52,9 +55,9 @@ const DetailsPage = async ({ params }: Props) => {
       <div className="fixed -bottom-20 right-0 w-[450px] h-[450px] bg-purple-600/10 blur-[150px] pointer-events-none" />
 
       {/* Navigation button */}
-      <ChangePageButton text="All Projects" destination="/projects" />
+      {/* <ChangePageButton text="All Projects" destination="/projects" /> */}
 
-      <div className="max-w-6xl mx-auto relative z-10 pt-28 lg:pt-20 pb-24">
+      <div className="max-w-6xl mx-auto relative z-10 pt-10 pb-24">
         <SuspenseWrapper fallback={<DetailsSkeleton />}>
           <SuspenseContent slug={slug} />
         </SuspenseWrapper>
