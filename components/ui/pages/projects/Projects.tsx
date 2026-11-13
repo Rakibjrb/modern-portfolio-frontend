@@ -115,6 +115,7 @@ export default function Projects({
       color: style.color,
       icon: style.icon,
       image: project.thumbnail,
+      slug: project.slug,
     };
   });
 
@@ -161,6 +162,7 @@ function ProjectCard({
     color: string;
     icon: string;
     image: string;
+    slug: string;
   };
 }) {
   return (
@@ -201,9 +203,11 @@ function ProjectCard({
 
         {/* Project Content */}
         <div className="flex flex-col flex-grow p-6">
-          <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors duration-300 mb-2">
-            {project.title}
-          </h3>
+          <Link href={`/projects/${project.slug}`}>
+            <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors duration-300 mb-2">
+              {project.title}
+            </h3>
+          </Link>
 
           <p className="text-slate-300 text-lg leading-relaxed mb-6 font-light line-clamp-3">
             {project.desc}
