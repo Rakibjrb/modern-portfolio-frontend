@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import {
   ExternalLink,
   Github,
-  Folder,
   Compass,
   Sparkles,
   RefreshCw,
+  ArrowUpRight,
+  Code2,
 } from "lucide-react";
 import { APIResponse } from "@/types/api.response.types";
 import { IProject } from "@/types/projects.interface";
@@ -165,122 +166,146 @@ function ProjectCard({
     slug: string;
   };
 }) {
+  const hasClientRepo =
+    project.githubClient && !project.githubClient.includes("private-repo");
+  const hasServerRepo =
+    project.githubServer && !project.githubServer.includes("private-repo");
+  const isPrivate =
+    Boolean(project.githubClient?.includes("private-repo")) ||
+    Boolean(project.githubServer?.includes("private-repo"));
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ y: -10 }}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className="group relative flex flex-col h-full"
     >
-      {/* The "Planet" Glow Effect */}
+      {/* Dynamic Cosmic Gradient Aura */}
       <div
-        className={`absolute -inset-1 bg-gradient-to-r ${project.color} rounded-[2rem] opacity-10 group-hover:opacity-30 transition-opacity duration-500 blur-sm`}
+        className={`absolute -inset-0.5 bg-gradient-to-r ${project.color} rounded-[2.2rem] opacity-20 group-hover:opacity-60 blur-md transition-all duration-500`}
       />
 
-      {/* Glass Card */}
-      <div className="relative flex flex-col h-full bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden backdrop-blur-md">
-        {/* Project Image Banner */}
-        <div className="relative h-60 w-full overflow-hidden border-b border-white/10">
+      {/* Main Glass Card */}
+      <div className="relative flex flex-col h-full bg-neutral-900/80 border border-white/10 group-hover:border-white/25 rounded-[2rem] overflow-hidden backdrop-blur-xl transition-all duration-300 shadow-2xl">
+        {/* Project Thumbnail Container */}
+        <Link
+          href={`/projects/${project.slug}`}
+          className="relative h-56 sm:h-64 w-full overflow-hidden block bg-neutral-950"
+        >
           <Image
             src={project.image}
             alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-            width={500}
-            height={500}
+            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            width={600}
+            height={400}
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-900/40 to-transparent" />
 
-          {/* Floating Planet/Category Icon */}
-          {project.tech.length > 0 && (
-            <span className="absolute top-4 right-4 bg-neutral-950/60 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full text-xs font-semibold tracking-wider text-white flex items-center gap-1.5 shadow-lg uppercase">
+          {/* Vignette & Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/30 to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
+
+          {/* Top Floating Badge */}
+          <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <span className="bg-neutral-950/70 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider text-white flex items-center gap-1.5 shadow-lg uppercase">
               <span className="text-sm">{project.icon}</span>
-              {project.tech[0]}
+              {project.tech[0] || "Project"}
             </span>
-          )}
-        </div>
 
-        {/* Project Content */}
-        <div className="flex flex-col flex-grow p-6">
-          <Link href={`/projects/${project.slug}`}>
-            <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors duration-300 mb-2">
+            {/* Quick Explore Icon */}
+            <span className="w-8 h-8 rounded-full bg-neutral-950/70 backdrop-blur-md border border-white/15 flex items-center justify-center text-slate-300 group-hover:text-cyan-400 group-hover:border-cyan-400/50 group-hover:scale-110 transition-all duration-300 shadow-lg">
+              <ArrowUpRight className="w-4 h-4" />
+            </span>
+          </div>
+        </Link>
+
+        {/* Project Body */}
+        <div className="flex flex-col flex-grow p-6 sm:p-7">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="group/title inline-block"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover/title:text-cyan-400 transition-colors duration-300 line-clamp-1 mb-2.5">
               {project.title}
             </h3>
           </Link>
 
-          <p className="text-slate-300 text-lg leading-relaxed mb-6 font-light line-clamp-3">
-            {project.desc}
+          <p className="text-slate-300/90 text-sm sm:text-base leading-relaxed mb-6 font-light line-clamp-3">
+            {project.desc ||
+              "Explore the key features, architecture, and live deployment of this project."}
           </p>
 
-          {/* Tech Stack Tags */}
+          {/* Tech Stack Chips */}
           <div className="flex flex-wrap gap-1.5 mb-6 mt-auto">
-            {project.tech.map((t, i) => (
+            {project.tech.slice(0, 5).map((t, i) => (
               <span
                 key={i}
-                className="text-[10px] font-medium uppercase tracking-widest px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-slate-300"
+                className="text-[11px] font-medium px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-slate-300 tracking-wide transition-colors"
               >
                 {t}
               </span>
             ))}
+            {project.tech.length > 5 && (
+              <span className="text-[11px] font-medium px-2 py-1 bg-white/5 border border-white/10 rounded-lg text-slate-400">
+                +{project.tech.length - 5}
+              </span>
+            )}
           </div>
 
-          {/* Action Links */}
-          <div className="border-t border-white/5 pt-4">
-            <div className="flex flex-wrap justify-center items-center gap-4">
-              {(project.githubClient || project.githubServer)?.includes(
-                "private-repo",
-              ) ? (
-                <div className="text-xs font-semibold text-gray-300">
-                  Project Repository is Private
-                </div>
+          {/* Card Footer Actions */}
+          <div className="border-t border-white/10 pt-4 flex items-center justify-between gap-3 text-xs">
+            {/* Repositories */}
+            <div className="flex items-center gap-2">
+              {isPrivate ? (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-400 font-medium">
+                  <Code2 className="w-3.5 h-3.5 text-amber-400" />
+                  Private
+                </span>
               ) : (
                 <>
-                  {project.githubClient === project.githubServer ? (
+                  {hasClientRepo && (
                     <a
                       href={project.githubClient}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-blue-400 text-slate-400 transition-colors cursor-pointer border border-slate-400 rounded-full py-2 px-3 flex gap-1.5 items-center text-[14px]"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all active:scale-95 font-medium"
+                      title="Frontend Repository"
                     >
-                      Frontend Repo
-                      <Github size={16} />
+                      <Github className="w-3.5 h-3.5" />
+                      <span>{hasServerRepo ? "Client" : "Code"}</span>
                     </a>
-                  ) : (
-                    <>
-                      <a
-                        href={project.githubClient}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-blue-400 text-slate-400 transition-colors cursor-pointer border border-slate-400 rounded-full py-2 px-3 flex gap-1.5 items-center text-[14px]"
-                      >
-                        Frontend Repo
-                        <Github size={16} />
-                      </a>
+                  )}
+
+                  {hasServerRepo &&
+                    project.githubClient !== project.githubServer && (
                       <a
                         href={project.githubServer}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-blue-400 text-slate-400 transition-colors cursor-pointer border border-slate-400 rounded-full py-2 px-3 flex gap-1.5 items-center text-[14px]"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all active:scale-95 font-medium"
+                        title="Backend Repository"
                       >
-                        Backend Repo
-                        <Github size={16} />
+                        <Github className="w-3.5 h-3.5" />
+                        <span>Server</span>
                       </a>
-                    </>
-                  )}
+                    )}
                 </>
               )}
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-lg hover:text-blue-400 text-slate-400 transition-colors cursor-pointer flex gap-1.5 items-center"
-              >
-                View Live
-                <ExternalLink size={16} />
-              </a>
             </div>
+
+            {/* Live Link Button */}
+
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-medium shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/35 transition-all active:scale-95"
+            >
+              <span>Live</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </div>
