@@ -91,31 +91,33 @@ export default function layout({
 
       <div className="absolute top-0 left-0 w-full h-full z-0">
         {/* Background Swirling Stars */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-          {stars.map((star, i) => (
-            <motion.div
-              key={i}
-              className="absolute bg-white rounded-full animate-pulse"
-              style={{
-                width: star.size,
-                height: star.size,
-                opacity: star.opacity,
-              }}
-              initial={{ rotate: star.angle }}
-              animate={{ rotate: star.angle + 360 }}
-              transition={{
-                duration: star.duration,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              <div
-                style={{ transform: `translate(${star.radius}px, 0)` }}
-                className="w-full h-full bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-              />
-            </motion.div>
-          ))}
-        </div>
+        {pathname !== "/contact" && (
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            {stars.map((star, i) => (
+              <motion.div
+                key={i}
+                className="absolute bg-white rounded-full animate-pulse"
+                style={{
+                  width: star.size,
+                  height: star.size,
+                  opacity: star.opacity,
+                }}
+                initial={{ rotate: star.angle }}
+                animate={{ rotate: star.angle + 360 }}
+                transition={{
+                  duration: star.duration,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <div
+                  style={{ transform: `translate(${star.radius}px, 0)` }}
+                  className="w-full h-full bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Black Hole Center (The Anchor) */}
         {pathname !== "/explore" && pathname !== "/contact" && (
