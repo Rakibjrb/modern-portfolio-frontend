@@ -149,11 +149,7 @@ export default function layout({
   );
 }
 
-interface FullscreenAlertModalProps {
-  onDismiss?: () => void;
-}
-
-export function FullscreenAlertModal({ onDismiss }: FullscreenAlertModalProps) {
+export function FullscreenAlertModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -183,7 +179,6 @@ export function FullscreenAlertModal({ onDismiss }: FullscreenAlertModalProps) {
 
   const handleClose = () => {
     setIsOpen(false);
-    onDismiss?.();
   };
 
   return (
@@ -194,7 +189,7 @@ export function FullscreenAlertModal({ onDismiss }: FullscreenAlertModalProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-md"
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-neutral-950/30 backdrop-blur-xs"
         >
           {/* Modal Container */}
           <motion.div
@@ -202,7 +197,7 @@ export function FullscreenAlertModal({ onDismiss }: FullscreenAlertModalProps) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 10 }}
             transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
-            className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-white/15 bg-neutral-900/90 p-7 text-white shadow-2xl backdrop-blur-2xl"
+            className="relative w-full max-w-[300px] overflow-hidden rounded-3xl border border-white/15 bg-neutral-900/90 py-10 px-7 text-white shadow-2xl backdrop-blur-2xl"
           >
             {/* Background Ambient Glows */}
             <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none" />
@@ -212,9 +207,9 @@ export function FullscreenAlertModal({ onDismiss }: FullscreenAlertModalProps) {
               type="button"
               onClick={handleClose}
               aria-label="Close"
-              className="cursor-pointer absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full bg-white/5 hover:bg-white/50 border border-white/50 transition-colors"
+              className="z-[9999] absolute top-5 right-5 cursor-pointer text-slate-400 hover:text-white transition-colors"
             >
-              <X className="w-4 h-4" />
+              <X className="w-6 h-6 text-2xl" />
             </button>
 
             <div className="relative z-10 flex flex-col items-center text-center space-y-4">
